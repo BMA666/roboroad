@@ -114,7 +114,9 @@ class GameScene extends Phaser.Scene {
 
         this.collisions = 0;
 
-        this.gasHoldTime = 0;
+        this.gasHolds = 0;
+
+        this.currentGasHold = 0;
 
         this.dangerApprovals = 0;
 
@@ -651,6 +653,11 @@ coordButton.on("pointerdown", () => {
 
     finishGame() {
 
+        if (this.currentGasHold >= 2) {
+
+         this.gasHolds++;
+        }
+    
         this.gameFinished = true;
 
         const average =
@@ -681,7 +688,7 @@ coordButton.on("pointerdown", () => {
                 rating: rating,
                 ratingColor: ratingColor,
                 collisions: this.collisions,
-                gasHoldTime: this.gasHoldTime,
+                gasHolds: this.gasHolds,
 
                 dangerApprovals:
                 this.dangerApprovals,
@@ -708,10 +715,20 @@ coordButton.on("pointerdown", () => {
             this.keys.up.isDown ||
             this.cursors.up.isDown;
             
-            if (gas) {
-                this.gasHoldTime +=
-                this.game.loop.delta / 1000;
-            }
+        if (gas) {
+
+    this.currentGasHold +=
+        this.game.loop.delta / 1000;
+}
+else {
+
+    if (this.currentGasHold >= 2) {
+
+        this.gasHolds++;
+    }
+
+    this.currentGasHold = 0;
+}
 
         const left =
             this.keys.left.isDown ||
@@ -942,7 +959,7 @@ class ResultScene extends Phaser.Scene {
         this.collisions =
             data.collisions;
 
-        this.gasHoldTime = data.gasHoldTime || 0;
+        this.gasHolds = data.gasHolds || 0;
         this.dangerApprovals =
             data.dangerApprovals || 0;
 
@@ -1007,7 +1024,7 @@ class ResultScene extends Phaser.Scene {
         this.add.text(
     GAME_WIDTH / 2,
     510,
-    "Газ удерживался",
+    "Удержаний газа > 2 сек",
     {
         ...PIXEL_STYLE,
         fontSize: "34px"
@@ -1017,7 +1034,7 @@ class ResultScene extends Phaser.Scene {
 this.add.text(
     GAME_WIDTH / 2,
     550,
-    this.gasHoldTime.toFixed(1) + " сек",
+    String(this.gasHolds),
     {
         ...PIXEL_STYLE,
         fontSize: "24px"
