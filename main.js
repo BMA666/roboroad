@@ -347,13 +347,32 @@ class GameScene extends Phaser.Scene {
 
         this.waitingApprove = true;
 
+        const positions = [
+
+    { x: 250, y: 250 },
+
+    { x: GAME_WIDTH - 250, y: 250 },
+
+    { x: 250, y: GAME_HEIGHT - 250 },
+
+    { x: GAME_WIDTH - 250, y: GAME_HEIGHT - 250 }
+];
+
+const pos =
+    Phaser.Utils.Array.GetRandom(
+        positions
+    );
+
+const modalX = pos.x;
+const modalY = pos.y;
+
         polygon.approveStartTime = 
             this.time.now;
 
         const bg =
             this.add.rectangle(
-                GAME_WIDTH / 2,
-                GAME_HEIGHT / 2,
+                modalX,
+                modalY,
                 580,
                 320,
                 0x111111
@@ -363,8 +382,8 @@ class GameScene extends Phaser.Scene {
 
         const title =
             this.add.text(
-                GAME_WIDTH / 2,
-                GAME_HEIGHT / 2 - 70,
+                modalX,
+                modalY - 70,
                 "Разрешение проезда",
                 {
                      ...PIXEL_STYLE,
@@ -376,8 +395,8 @@ class GameScene extends Phaser.Scene {
 
         const button =
             this.add.rectangle(
-                GAME_WIDTH / 2,
-                GAME_HEIGHT / 2 + 80,
+                modalX,
+                modalY + 80,
                 280,
                 90,
                 0x1565c0
@@ -387,8 +406,8 @@ class GameScene extends Phaser.Scene {
 
         const text =
             this.add.text(
-                GAME_WIDTH / 2,
-                GAME_HEIGHT / 2 + 80,
+                modalX,
+                modalY + 80,
                 "APPROVE",
                 {
                      ...PIXEL_STYLE,
@@ -985,7 +1004,7 @@ class ResultScene extends Phaser.Scene {
             "Управление",
             {
              ...PIXEL_STYLE,
-                fontSize: "34px"
+                fontSize: "32px"
             }
         ).setOrigin(0.5);
 
@@ -1006,7 +1025,7 @@ class ResultScene extends Phaser.Scene {
             "Столкновений",
             {
                 ...PIXEL_STYLE,
-                fontSize: "34px"
+                fontSize: "32px"
             }
         ).setOrigin(0.5);
 
@@ -1026,7 +1045,7 @@ class ResultScene extends Phaser.Scene {
     "Удержаний газа > 2 сек",
     {
         ...PIXEL_STYLE,
-        fontSize: "34px"
+        fontSize: "32px"
     }
 ).setOrigin(0.5);
 
@@ -1046,7 +1065,7 @@ this.add.text(
     "Обработано DANGER",
     {
         ...PIXEL_STYLE,
-        fontSize: "34px"
+        fontSize: "32px"
     }
 ).setOrigin(0.5);
 
@@ -1072,7 +1091,7 @@ this.add.text(
     "Среднее время реакции",
     {
         ...PIXEL_STYLE,
-        fontSize: "34px"
+        fontSize: "32px"
     }
 ).setOrigin(0.5);
 
@@ -1138,7 +1157,7 @@ const config = {
 
         arcade: {
 
-            debug: true
+            debug: false
         }
     },
 
