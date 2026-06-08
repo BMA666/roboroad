@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Robo Road</title>
+
+    <style>
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @font-face {
+        font-family: 'PressStart2P';
+        src: url('fonts/PressStart2P-Regular.ttf') format('truetype');
+    }
+
+    html,
+    body {
+        background: url("assets/bg.gif") center center / cover no-repeat;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    canvas {
+        display: block;
+    }
+    </style>
+</head>
+<div id="font-preload"
+     style="
+        position:absolute;
+        left:-9999px;
+        top:-9999px;
+        font-family: PressStart2P;
+        font-size: 32px;">
+    preload
+</div>
+
+<body>
+    <img
+        id="bg"
+        src="assets/bg.png"
+    >
+    
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
