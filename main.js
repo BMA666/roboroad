@@ -130,9 +130,9 @@ class GameScene extends Phaser.Scene {
 
         this.maxSpeed = 5;
 
-        this.acceleration = 0.12;
+        this.acceleration = 0.08;
 
-        this.friction = 0.05;
+        this.friction = 0.04;
 
         this.steering = 8;
 
@@ -726,7 +726,8 @@ coordButton.on("pointerdown", () => {
         if (gas) {
 
             this.speed +=
-                this.acceleration;
+                this.acceleration *
+                    (1 - this.speed / this.maxSpeed);
 
         } else {
 
@@ -1121,7 +1122,7 @@ const config = {
 
         arcade: {
 
-            debug: false
+            debug: true
         }
     },
 
