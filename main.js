@@ -1139,7 +1139,7 @@ const config = {
 
         arcade: {
 
-            debug: true
+            debug: false
         }
     },
 
