@@ -986,7 +986,7 @@ class ResultScene extends Phaser.Scene {
     }
 
     create() {
-        this.cameras.main.setBackgroundColor("#000");
+
 
         this.add.text(
             GAME_WIDTH / 2,
